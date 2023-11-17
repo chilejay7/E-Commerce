@@ -1,7 +1,9 @@
 const express = require('express');
 const routes = require('./routes');
 // import sequelize connection
-// const sequelize = require('sequelize');
+
+// The const needs to be defined by importing the sequelize connection that creates a new instance of the class and includes
+// the db connection information contained in the file specified.
 const sequelize = require('./config/connection');
 
 const app = express();
