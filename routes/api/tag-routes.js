@@ -1,7 +1,10 @@
 const router = require('express').Router();
+
+// Our sequelize models / tables need to be imported from the models directory.
 const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
+// The include statements in the following code represent join statements with the tables / models specified.
 
 router.get('/', async (req, res) => {
   // find all tags

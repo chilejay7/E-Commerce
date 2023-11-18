@@ -1,17 +1,23 @@
 const router = require('express').Router();
+
+// Our sequelize models / tables need to be imported from the models directory.
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
+// The include statements in the following code represent join statements with the tables / models specified.
 
 // get all products
 router.get('/', async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
   // This is a SELECT * statement joining the product, tag and product_tag tables.
+  // The include property is an array of objects.  When mulitple tables are needed and one uses an intermediary such as the Tag model, a new object should
+  // be added to the array.
   console.info(req.body);
   try {
     const productData = await Product.findAll({
-      include: [{
+      include: [
+      {
         model: Category,
       },
       {
