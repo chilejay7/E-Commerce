@@ -22,9 +22,9 @@ The application can be installed by cloning the repository to your local machine
 
 ## Usage
 
-The application is initialized by running the `node server.js` command through the terminal.  When the `server.js` file is called, it syncs the database through sequelize and starts the express application, listening on port 3001.  Rquests can be sent to the application using the routes defined within the `routes/api` directory using the following syntax: `localhost:3001/api/<route name>`.  The routes that can be queried are: `api/products`, `api/categories`, and `api/tags`.  Requests can be sent through an application such as Insomnia or Postman to retrieve product related data from the database.  Each endpoint has a `GET`, `POST`, `PUT`, and `DELETE` endpoint defined.  The `GET` endpoint will use a `SELECT * FROM <table name>` query if no id is specified.  If an id is given as an additional paramter through the GET request, the individual record pertaining to that id will be retrieved.
+The application is initialized by running the `node server.js` command through the terminal.  When the `server.js` file is called, it syncs the database through sequelize and starts the express application, listening on port 3001.  Rquests can be sent to the application using the routes defined within the `routes/api` directory using the following syntax: `localhost:3001/api/<route name>`.  The routes that can be queried are: `api/products`, `api/categories`, and `api/tags`.  Requests can be sent through an application such as Insomnia or Postman to retrieve product related data from the database.  Each endpoint has a `GET`, `POST`, `PUT`, and `DELETE` endpoint defined.  The `GET` endpoint will use a `SELECT * FROM <table name>` query if no id is specified.  If an id is given as an additional parameter through the GET request, the individual record pertaining to that id will be retrieved.
 
-A link to the video demonstrating the application's use can be found here: [Walkthrough Video]()
+A link to the video demonstrating the application's use can be found here: [Walk-through Video]()
 
 ## License
 
