@@ -7,6 +7,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
+  // This is a SELECT * statement joining the product, tag and product_tag tables.
   console.info(req.body);
   try {
     const productData = await Product.findAll({

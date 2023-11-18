@@ -6,12 +6,14 @@ const routes = require('./routes');
 // the db connection information contained in the file specified.
 const sequelize = require('./config/connection');
 
+// Initializes the express application.
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// This imports the routes from the directory by the same name.
 app.use(routes);
 
 // sync sequelize models to the database, then turn on the server
