@@ -43,6 +43,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
+    console.info(req.body);
     const createTag = await Tag.create(req.body);
     res.status(200).json(createTag);
   } catch (err) {
@@ -69,25 +70,33 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
-  try{
+  try {
     const { id } = req.params;
     const deleteProductTag = await ProductTag.destroy({
       where: {
         tag_id: id,
-      } 
+      }
     })
-    .then(async () => {
-      const deleteTag = await Tag.destroy({
-        where: {
-          id: id,
-        }
+      .then(async () => {
+        const deleteTag = await Tag.destroy({
+          where: {
+            id: id,
+          }
+        })
       })
-    })
-    res.status(200).json(`The tag with an id of ${id} has been deleted`);
+      // .then(async () => {
+      //   const tagData = await Tag.findAll({
+      //     include: [{
+      //       model: Product,
+      //       through: ProductTag,
+      //     }]
+      //   })
+    res.status(200).send(`The tag with an id of ${id} has been deleted.`)
+      // })
   } catch (err) {
     res.status(500).json(err);
   }
-  }
+}
 );
 
 module.exports = router;
