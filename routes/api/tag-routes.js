@@ -43,6 +43,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
+    console.info(req.body);
     const createTag = await Tag.create(req.body);
     res.status(200).json(createTag);
   } catch (err) {
@@ -53,13 +54,15 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
+    console.info(req.body);
     const { id } = req.params;
+    const { tag_name } = req.body;
     const updateTagName = await Tag.update(req.body, {
       where: {
         id: id,
       }
     })
-    res.status(200).json(updateTagName);
+    res.status(200).send(`Tag name of tag #${id} updated to ${tag_name}`);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -67,18 +70,25 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
-  try{
+  try {
     const { id } = req.params;
-    const deleteTag = await Tag.destroy({
+    const deleteProductTag = await ProductTag.destroy({
       where: {
-        id: id,
-      } 
-    });
-    res.status(200).json(deleteTag);
+        tag_id: id,
+      }
+    })
+      .then(async () => {
+        const deleteTag = await Tag.destroy({
+          where: {
+            id: id,
+          }
+        })
+      })
+    res.status(200).send(`The tag with an id of ${id} has been deleted.`)
   } catch (err) {
     res.status(500).json(err);
   }
-  }
+}
 );
 
 module.exports = router;

@@ -65,6 +65,7 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+ console.log(req.body)
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -136,12 +137,19 @@ router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
     const { id } = req.params;
-    const productDelete = await Product.destroy({
+    const productTagDelete = await ProductTag.destroy({
+      where: {
+        product_id: id,
+      }
+    })
+    .then(async () => {
+      const productDelete = await Product.destroy({
       where: {
         id: id,
       }
+      })
     });
-    res.status(200).json(productDelete);
+    res.status(200).json(`The product has been deleted.`);
   } catch (err) {
     res.status(500).json(err);
   }
