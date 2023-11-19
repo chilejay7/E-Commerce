@@ -84,15 +84,7 @@ router.delete('/:id', async (req, res) => {
           }
         })
       })
-      // .then(async () => {
-      //   const tagData = await Tag.findAll({
-      //     include: [{
-      //       model: Product,
-      //       through: ProductTag,
-      //     }]
-      //   })
     res.status(200).send(`The tag with an id of ${id} has been deleted.`)
-      // })
   } catch (err) {
     res.status(500).json(err);
   }
